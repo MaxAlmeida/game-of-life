@@ -15,22 +15,6 @@ module GameOfLife
       @cells = cells
     end
 
-    def setup_seed(seed)
-       begin
-        seed.each do |seed|
-          get_cell(seed[0],seed[1]).revive
-        end
-       rescue NoMethodError
-         puts "Board is smaller than seed informed"
-         exit
-       end
-    end
-
-    def display
-      system "clear"
-      puts @cells.map {|row| row.map {|cell| cell.status == 1 ? '#' : '.'}.join(' ')}
-    end
-
     def get_cell x, y
       @cells.flatten.find { |cell| cell.x == x && cell.y == y }
     end

@@ -8,14 +8,14 @@ class Life
         @board = board
         @seeds = init_seeds
         check_args
-        @board.setup_seed(get_seed)
+        setup_seed(get_seed)
     end
 
     def run
-      @board.display()
+      display()
       loop do
         @board.next_generation
-        @board.display()
+        display()
         capture_exit
       end
     end
@@ -30,6 +30,22 @@ class Life
         puts "Its necessary pass quantity cells and seed name."
         exit 128
        end
+    end
+
+    def display
+      system "clear"
+      puts @board.cells.map {|row| row.map {|cell| cell.status == 1 ? '#' : '.'}.join(' ')}
+    end
+
+    def setup_seed(seed)
+      begin
+       seed.each do |seed|
+         @board.get_cell(seed[0],seed[1]).revive
+       end
+      rescue NoMethodError
+        puts "Board is smaller than seed informed"
+        exit
+      end
     end
 
     def get_seed

@@ -17,17 +17,6 @@ RSpec.describe GameOfLife::Board do
         expect(board.get_cell(1,1).class).to eq(GameOfLife::Cell)
       end
     end
-
-    describe "#setup_seed" do
-      it "Revive cells defined in seed" do
-        board.setup_seed(seed)
-        expect(board.get_cell(1,0).status).to eq(GameOfLife::Cell::ALIVE)
-      end
-
-      it "Raise error when seed off limits" do
-        expect { board.setup_seed(seed_off_limits) }.to raise_exception(SystemExit)
-      end
-    end
   end
 
   context "when board receive seeds with cells alive" do
