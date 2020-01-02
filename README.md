@@ -21,8 +21,10 @@ Or install it yourself as:
     $ gem install game-of-life
 
 ## Usage
-
-TODO: Write usage instructions here
+Run `bin/console`without params for see available seeds. Then, run `bin/console [quantity cells] [seed name]`.
+Example: 
+    
+       $ bin/console 20 glider
 
 ## Development
 
