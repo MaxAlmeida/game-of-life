@@ -16,10 +16,14 @@ module GameOfLife
     end
 
     def setup_seed(seed)
+       begin
         seed.each do |seed|
-          puts get_cell(seed[0],seed[1])
           get_cell(seed[0],seed[1]).revive
         end
+       rescue NoMethodError
+         puts "Board is smaller than seed informed"
+         exit
+       end
     end
 
     def display
@@ -45,7 +49,6 @@ module GameOfLife
       next_generation_status.map do |status|
         get_cell(status[:x], status[:y]).set(status[:next])
       end
-      display()
     end
 
     private def set_board_limit cell_quantity
