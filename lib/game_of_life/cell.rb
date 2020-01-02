@@ -63,11 +63,7 @@ module GameOfLife
     end
 
     def invalid_position? position
-      position[:x] < 0 || position[:x] >= @board.board_limit || position[:y] < 0 || position[:y] >= @board.board_limit
-    end
-
-    def to_s
-      puts "#{x} #{y}"
+      position[:x] < 0 || position[:x] > @board.board_limit || position[:y] < 0 || position[:y] > @board.board_limit
     end
   end
 end
