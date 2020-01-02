@@ -15,19 +15,16 @@ class Life
       @board.display()
       loop do
         @board.next_generation
-        sleep 0.01
-
-        trap "SIGINT" do
-          puts "Exiting"
-          exit 130
-        end
+        @board.display()
+        capture_exit
       end
     end
 
     def check_args
        if ARGV.count == 0
-          puts "Available seeds: \n\n"
+          puts "Available seeds: "
           puts @seeds.keys
+          puts "\n\nType bin/console [quantity cells] [seed name]"
           exit 128
        elsif ARGV.count != 2
         puts "Its necessary pass quantity cells and seed name."
@@ -56,6 +53,13 @@ class Life
         "acorn" => [[0,1],[1,3],[2,0],[2,1],[2,4],[2,5],[2,6]],
         "diehard" => [[6,0],[0,1],[1,1],[1,2],[5,2],[6,2],[7,2]],
       }
+    end
+
+    def capture_exit
+      trap "SIGINT" do
+        puts "Exiting"
+        exit 130
+      end
     end
 end
 
